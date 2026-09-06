@@ -50,3 +50,15 @@ export async function fetchBalances() {
   if (!res.ok) throw new Error("Failed to fetch balances");
   return res.json();
 }
+
+export async function fetchLatestQuote() {
+  const res = await fetch(`${API_BASE}/quotes/active`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to restore quote");
+  return res.json();
+}
+
+export async function fetchTradeHistory() {
+  const res = await fetch(`${API_BASE}/trades/history`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch activity");
+  return res.json();
+}
