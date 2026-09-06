@@ -121,19 +121,7 @@ class TradeService {
   .select()
   .single();
 
-console.log("=== QUOTE INSERT RESULT ===");
-console.log("QUOTE:", quote);
-console.log("QUOTE ERROR:", quoteError);
-
-
-      console.log("TRADE SERVICE PARAMS:", {
-        side,
-        inputType,
-        inputAmount,
-      });
-
       if (quoteError) {
-        console.error("QUOTE INSERT FAILED:", quoteError);
         throw new Error(`QUOTE_INSERT_FAILED: ${quoteError.message}`);
       }
       
@@ -292,15 +280,15 @@ console.log("QUOTE ERROR:", quoteError);
       })
       .eq("id", quoteId);
 
-    return {
-      tradeId: trade!.id,
-      quoteId: trade!.quote_id,
-      side: trade!.side,
-      goldGrams: parseFloat(trade!.gold_grams),
-      totalPKR: parseFloat(trade!.total_pkr),
-      executionPrice: parseFloat(trade!.price_per_gram),
-      completedAt: new Date(trade!.created_at),
-    };
+      return {
+        tradeId: trade!.id,
+        quoteId: trade!.quote_id,
+        side: trade!.side,
+        goldGrams: parseFloat(trade!.gold_grams),
+        totalPKR: parseFloat(trade!.total_pkr),
+        executionPrice: parseFloat(trade!.price_per_gram),
+        completedAt: trade!.created_at,
+      };
   }
 }
 

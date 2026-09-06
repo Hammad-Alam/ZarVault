@@ -7,8 +7,6 @@ export async function POST(request: Request) {
 
     const { side, inputType, inputAmount } = body;
 
-    console.log("CREATE QUOTE BODY:", body);
-
     const quote = await tradeService.createQuote({
       side,
       inputType,
@@ -17,8 +15,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(quote, { status: 200 });
   } catch (error: unknown) {
-    console.error("=== CREATE QUOTE ROUTE ERROR ===", error);
-  
     const errorMessage =
       error instanceof Error
         ? error.message
@@ -26,8 +22,6 @@ export async function POST(request: Request) {
           ? error
           : JSON.stringify(error);
   
-    console.error("ERROR MESSAGE:", errorMessage);
-
     if (errorMessage === "INSUFFICIENT_PKR") {
       return NextResponse.json(
         {

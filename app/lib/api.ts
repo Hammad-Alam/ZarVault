@@ -11,11 +11,6 @@ export async function createQuote(
   inputType: "PKR" | "GOLD",
   inputAmount: number,
 ) {
-  console.log("CREATE QUOTE REQUEST:", {
-    side,
-    inputType,
-    inputAmount,
-  });
   const res = await fetch(`${API_BASE}/quotes/create`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
