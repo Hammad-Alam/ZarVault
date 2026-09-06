@@ -3,9 +3,10 @@ import { formatGold, formatPKR } from "../lib/utils";
 
 interface Props {
   trades: any[];
+  loading?: boolean;
 }
 
-export function ActivityCard({ trades }: Props) {
+export function ActivityCard({ trades, loading = false }: Props) {
   const pageSize = 5;
   const [page, setPage] = useState(1);
   const pageCount = Math.max(1, Math.ceil(trades.length / pageSize));
@@ -24,11 +25,30 @@ export function ActivityCard({ trades }: Props) {
             Recent trades
           </h2>
         </div>
-        <span className="text-xs text-[#66736E]">
-          {trades.length} {trades.length === 1 ? "trade" : "trades"}
-        </span>
+        {loading ? (
+          <span className="h-4 w-16 animate-pulse rounded bg-[#E9F2F0]" />
+        ) : (
+          <span className="text-xs text-[#66736E]">
+            {trades.length} {trades.length === 1 ? "trade" : "trades"}
+          </span>
+        )}
       </div>
-      {trades.length === 0 ? (
+      {loading ? (
+        <div className="mt-6 divide-y divide-[#DFE8E4]" aria-label="Loading activity">
+          {Array.from({ length: 3 }, (_, index) => (
+            <div key={index} className="flex items-center justify-between gap-4 py-4 first:pt-0">
+              <div className="flex items-center gap-3">
+                <div className="h-9 w-9 animate-pulse rounded-full bg-[#E9F2F0]" />
+                <div className="space-y-2">
+                  <div className="h-4 w-20 animate-pulse rounded bg-[#E9F2F0]" />
+                  <div className="h-3 w-28 animate-pulse rounded bg-[#F2F6F4]" />
+                </div>
+              </div>
+              <div className="h-4 w-20 animate-pulse rounded bg-[#E9F2F0]" />
+            </div>
+          ))}
+        </div>
+      ) : trades.length === 0 ? (
         <div className="mt-6 rounded-xl bg-[#F2F6F4] p-5 text-sm text-[#66736E]">
           Your completed trades will appear here.
         </div>

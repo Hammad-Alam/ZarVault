@@ -11,6 +11,7 @@ export function useTrading() {
 
   const [wallet, setWallet] = useState({ pkr: 0, goldGrams: 0 });
   const [inventory, setInventory] = useState({ pkr: 0, goldGrams: 0 });
+  const [balanceLoading, setBalanceLoading] = useState(true);
 
   const [currentQuote, setCurrentQuote] = useState<any>(null);
   const [quoteLoading, setQuoteLoading] = useState(false);
@@ -18,6 +19,7 @@ export function useTrading() {
 
   const [lastTrade, setLastTrade] = useState<any>(null);
   const [activity, setActivity] = useState<any[]>([]);
+  const [activityLoading, setActivityLoading] = useState(true);
   const [settlementLoading, setSettlementLoading] = useState(false);
   const [settlementError, setSettlementError] = useState<string | null>(null);
 
@@ -50,6 +52,7 @@ export function useTrading() {
   };
 
   const fetchBalances = async () => {
+    setBalanceLoading(true);
     try {
       const data = await api.fetchBalances();
       setWallet({
@@ -62,6 +65,8 @@ export function useTrading() {
       });
     } catch (e: any) {
       console.error("Failed to fetch balances:", e);
+    } finally {
+      setBalanceLoading(false);
     }
   };
 
@@ -75,10 +80,13 @@ export function useTrading() {
   };
 
   const fetchActivity = async () => {
+    setActivityLoading(true);
     try {
       setActivity(await api.fetchTradeHistory());
     } catch (e) {
       console.error("Failed to fetch activity:", e);
+    } finally {
+      setActivityLoading(false);
     }
   };
 
@@ -140,11 +148,13 @@ export function useTrading() {
     priceError,
     wallet,
     inventory,
+    balanceLoading,
     currentQuote,
     quoteLoading,
     quoteError,
     lastTrade,
     activity,
+    activityLoading,
     settlementLoading,
     settlementError,
     fetchMarketPrice,

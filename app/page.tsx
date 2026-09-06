@@ -159,7 +159,10 @@ export default function Home() {
             onRetry={trading.fetchMarketPrice}
           />
           <div id="trade">
-            <PortfolioCard wallet={trading.wallet} />
+            <PortfolioCard
+              wallet={trading.wallet}
+              loading={trading.balanceLoading}
+            />
           </div>
         </div>
 
@@ -192,7 +195,10 @@ export default function Home() {
             )}
           </div>
           <div id="activity">
-            <ActivityCard trades={trading.activity} />
+            <ActivityCard
+              trades={trading.activity}
+              loading={trading.activityLoading}
+            />
           </div>
         </div>
       </main>
