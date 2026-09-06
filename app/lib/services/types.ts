@@ -1,9 +1,9 @@
 // Interface representing a market price entry
 export interface MarketPrice {
   pricePkrPerGram: number;
-  source: "PakGold" | "GoldPrice" | "Unknown";
+  source: "PakGold" | "GoldPrice.org" | "Unknown";
   fetchedAt: Date;
-  freshnesSeconds: number;
+  freshnessSeconds: number;
   isTrusted: boolean;
 }
 
