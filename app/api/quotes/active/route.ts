@@ -17,7 +17,10 @@ export async function GET() {
     .maybeSingle();
 
   if (error) {
-    return NextResponse.json({ error: "Failed to restore quote" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to restore quote" },
+      { status: 500 },
+    );
   }
 
   if (!quote) return NextResponse.json(null, { status: 200 });
@@ -34,7 +37,13 @@ export async function GET() {
     priceSource: quote.price_source,
     createdAt: parseDatabaseTimestamp(quote.created_at).toISOString(),
     expiresAt: parseDatabaseTimestamp(quote.expires_at).toISOString(),
-    remainingSeconds: Math.max(0, Math.floor((parseDatabaseTimestamp(quote.expires_at).getTime() - Date.now()) / 1000)),
+    remainingSeconds: Math.max(
+      0,
+      Math.floor(
+        (parseDatabaseTimestamp(quote.expires_at).getTime() - Date.now()) /
+          1000,
+      ),
+    ),
     status: quote.status,
   });
 }

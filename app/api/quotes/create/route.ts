@@ -21,7 +21,7 @@ export async function POST(request: Request) {
         : typeof error === "string"
           ? error
           : JSON.stringify(error);
-  
+
     if (errorMessage === "INSUFFICIENT_PKR") {
       return NextResponse.json(
         {

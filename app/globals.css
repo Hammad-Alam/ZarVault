@@ -25,18 +25,24 @@ body {
   letter-spacing: 0;
 }
 
-button, input, select {
+button,
+input,
+select {
   font: inherit;
 }
 
-button:focus-visible, input:focus-visible, select:focus-visible {
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
   outline: 3px solid rgba(140, 203, 80, 0.55);
   outline-offset: 2px;
 }
 
 .app-shell {
   min-height: 100vh;
-  background: radial-gradient(circle at 90% 0%, #eef5ef 0, transparent 32rem), var(--background);
+  background:
+    radial-gradient(circle at 90% 0%, #eef5ef 0, transparent 32rem),
+    var(--background);
 }
 
 .hero-section {
@@ -52,7 +58,9 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   pointer-events: none;
   position: absolute;
   top: 0.25rem;
-  transition: transform 240ms ease, border-color 240ms ease;
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease;
   width: 2.5rem;
 }
 
@@ -77,13 +85,19 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 
 @media (max-width: 1100px) {
-  .hero-section::before { left: -2rem; }
-  .hero-section::after { right: -2rem; }
+  .hero-section::before {
+    left: -2rem;
+  }
+  .hero-section::after {
+    right: -2rem;
+  }
 }
 
 @media (max-width: 700px) {
   .hero-section::before,
-  .hero-section::after { display: none; }
+  .hero-section::after {
+    display: none;
+  }
 }
 
 .surface {
@@ -111,11 +125,19 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   justify-content: center;
   min-height: 48px;
   padding: 0 1rem;
-  transition: background 160ms ease, transform 160ms ease;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
 }
 
-.primary-button:hover:not(:disabled) { background: #083a37; transform: translateY(-1px); }
-.primary-button:disabled { background: #afbfba; cursor: not-allowed; }
+.primary-button:hover:not(:disabled) {
+  background: #083a37;
+  transform: translateY(-1px);
+}
+.primary-button:disabled {
+  background: #afbfba;
+  cursor: not-allowed;
+}
 
 .secondary-button {
   align-items: center;
@@ -129,11 +151,26 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   padding: 0 1rem;
 }
 
-.secondary-button:hover { background: var(--teal-soft); }
+.secondary-button:hover {
+  background: var(--teal-soft);
+}
 
-.fade-in { animation: fade-in 320ms ease both; }
-@keyframes fade-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in {
+  animation: fade-in 320ms ease both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @media (max-width: 640px) {
-  .surface { border-radius: 14px; }
+  .surface {
+    border-radius: 14px;
+  }
 }
