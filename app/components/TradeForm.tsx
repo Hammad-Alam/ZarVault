@@ -50,7 +50,7 @@ export function TradeForm({
       </div>
 
       {/* Side toggle */}
-      <div className="mt-6 grid grid-cols-2 rounded-xl bg-[#F2F6F4] p-1">
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 rounded-xl bg-[#F2F6F4] p-1">
         <button
           onClick={() => setSide("BUY")}
           className={`rounded-lg py-2.5 text-sm font-semibold transition ${
